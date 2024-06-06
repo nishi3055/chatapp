@@ -39,9 +39,11 @@
                             allDay: true,
                         });
                     }
+                    
                 },
 
             });
+            
             calendar.render();
         });
 
@@ -102,7 +104,7 @@
 <body>
     <!-- データ出力場所 -->
     <ul id="output"></ul>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         // 日時をいい感じの形式にする関数
@@ -116,6 +118,14 @@
             const s = _d.getSeconds().toString().padStart(2, '0');
             return `${Y}/${m}/${d} ${H}:${i}:${s}`;
         }
+    </script>
+    <script>
+        calendar.addEvent({
+            extendedProps: {
+            userId: document.querySelector('[data-user-id]').getAttribute('data-user-id'),
+            }
+        });
+
     </script>
  
  
@@ -138,7 +148,7 @@
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
-        apiKey: 
+        apiKey: "AIzaSyCMZLMV3jne_EcLAG-XbaTE7eDt_H6medQ",
         authDomain: "chat-app-schedule.firebaseapp.com",
         projectId: "chat-app-schedule",
         storageBucket: "chat-app-schedule.appspot.com",
@@ -164,7 +174,7 @@
                 Discussion: $("#discussion").val(),
                 Nextaction: $("#nextaction").val(),
                 time: serverTimestamp(),
-            };
+            }
             addDoc(collection(db, "chat-schedule"), postData);
             $("#name").val(),
             $("#project").val(),
@@ -199,7 +209,7 @@
                 htmlElements.push(`
           <li id="${document.id}">
             <p>${document.data.実施者} at ${convertTimestampToDatetime(document.data.time.seconds)}</p>
-            <p>${document.data.roject名}</p>
+            <p>${document.data.project名}</p>
             <p>${document.data.Testnumber}</p>
             <p>${document.data.試験開始日}</p>
             <p>${document.data.試験終了日}</p>
